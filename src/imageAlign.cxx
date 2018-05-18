@@ -109,6 +109,8 @@
 
 #ifdef __IPP
 #include <ipp.h>
+#include <ippi90legacy.h>
+#include <ippi90legacy_redef.h>
 typedef Ipp32f PDTYPE;
 #define	IPL_DEPTH_PROC				IPL_DEPTH_32F
 #define	IppsThreshold_LT_I			ippsThreshold_LT_32f_I
@@ -237,7 +239,7 @@ bool CImageAlign::Initialize(CvPoint c, int wsize, CImagePyramid* Ipyr)
 	//! 6. Crop the template image
 	for (i=0; i < pyrLevel; i++) {
 		cvSetImageROI((*Ipyr)[i], m_roi[i]);
-		cvCopyImage((*Ipyr)[i], m_imgT[i]);
+		cvCopy((*Ipyr)[i], m_imgT[i]);
 	}
 
 	//! 7. Compute the image gradient for all pyramid levels
@@ -655,6 +657,7 @@ void CImageAlign::WarpBackImage(IplImage* I_whole, IplImage* I, CvRect r, CvMat*
     ippiWarpPerspectiveBack_32f_C1R(src, size, srcStep, src_roi,
 									dst, dstStep, dst_roi,
 									coeffs, IPPI_INTER_LINEAR);
+                                    
 
 }
 

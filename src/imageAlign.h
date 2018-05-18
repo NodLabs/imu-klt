@@ -21,6 +21,8 @@
 
 #include <vector>
 #include <list>
+#include <ipp.h>
+#include <ipps90legacy.h>
 
 #include <cv.h>
 #include "featureTrack.h"
